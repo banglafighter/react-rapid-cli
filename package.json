@@ -1,0 +1,23 @@
+{
+  "name": "react-rapid-cli",
+  "version": "1.0.0",
+  "description": "React Rapid CLI",
+  "bin": {
+    "rr-cli": "bin/index.js"
+  },
+  "main": "bin/index.js",
+  "scripts": {
+    "watch": "tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.7.7",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "figlet": "^1.8.0"
+  }
+}
