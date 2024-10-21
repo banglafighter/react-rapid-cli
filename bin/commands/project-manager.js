@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const file_manager_1 = __importDefault(require("../file-manager"));
 const path = require('path');
 const chalk = require('chalk');
 const validateProjectName = require('validate-npm-package-name');
@@ -92,6 +96,25 @@ class ProjectManager {
         });
         return true;
     }
+    copyDirectory(source, destination, callback) {
+        fs.copy(source, destination, (err) => {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                if (callback) {
+                    callback();
+                }
+            }
+        });
+    }
+    updateProjectName(projectName, projectRoot) {
+        const packageName = "package.json";
+        const packageJsonPath = path.join(projectRoot, packageName);
+        let content = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+        content.name = projectName;
+        fs.writeFileSync(packageJsonPath, JSON.stringify(content, null, 2));
+    }
     create(projectName) {
         if (!projectName) {
             projectName = "rr-project";
@@ -106,6 +129,11 @@ class ProjectManager {
         console.log();
         console.log(`Creating a new React Rapid app in ${chalk.green(root)}.`);
         console.log();
+        let projectTemplatePath = file_manager_1.default.getProjectTemplate();
+        const _this = this;
+        this.copyDirectory(projectTemplatePath, root, () => {
+            _this.updateProjectName(projectName, root);
+        });
     }
 }
 exports.default = ProjectManager;

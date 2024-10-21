@@ -1,3 +1,5 @@
+import FileManager from "../file-manager";
+
 const path = require('path');
 const chalk = require('chalk');
 const validateProjectName = require('validate-npm-package-name');
@@ -113,6 +115,27 @@ export default class ProjectManager {
         return true;
     }
 
+    copyDirectory(source: any, destination: any, callback?: any) {
+        fs.copy(source, destination, (err: any) => {
+            if (err) {
+                console.error(err);
+            } else {
+                if (callback) {
+                    callback()
+                }
+            }
+        });
+    }
+
+
+    updateProjectName(projectName: any, projectRoot: any) {
+        const packageName: string = "package.json"
+        const packageJsonPath: string = path.join(projectRoot, packageName)
+        let content = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+        content.name = projectName;
+        fs.writeFileSync(packageJsonPath, JSON.stringify(content, null, 2));
+    }
+
 
     create(projectName: any) {
         if (!projectName) {
@@ -130,6 +153,14 @@ export default class ProjectManager {
         console.log();
         console.log(`Creating a new React Rapid app in ${chalk.green(root)}.`);
         console.log();
+
+        let projectTemplatePath: string = FileManager.getProjectTemplate()
+
+        const _this = this
+        this.copyDirectory(projectTemplatePath, root, () => {
+            _this.updateProjectName(projectName, root)
+        })
+
     }
 
 }
