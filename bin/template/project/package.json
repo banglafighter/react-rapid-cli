@@ -6,6 +6,9 @@
     "dependencies/*",
     "application/*"
   ],
+  "dependencies": {
+    "react-rapid-app": "^0.0.4"
+  },
   "scripts": {
     "start-app": "lerna run start-app --stream",
     "build-app": "lerna run build-app --stream",
