@@ -1,0 +1,33 @@
+{
+  "name": "boot",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "react-rapid-app": "^0.0.1",
+    "typescript": "^5.6.3"
+  },
+  "scripts": {
+    "start-app": "webpack-dev-server --env pfen=local",
+    "dev-build": "webpack --mode=production --env pfen=dev",
+    "compile-dev": "webpack --mode=production --env pfen=dev --watch",
+    "prod-build": "webpack --mode=production --env pfen=prod && firebase deploy -P prod"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^8.1.0",
+    "file-loader": "^6.2.0",
+    "css-loader": "^7.1.2",
+    "sass-loader": "^16.0.1",
+    "sass": "^1.49.9",
+    "html-webpack-plugin": "^5.6.0",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}

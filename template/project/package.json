@@ -1,0 +1,22 @@
+{
+  "name": "react-rapid-example",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "dependencies/*",
+    "application/*"
+  ],
+  "scripts": {
+    "start-app": "lerna run start-app --stream",
+    "build-app": "lerna run build-app --stream",
+    "dev-build": "lerna run dev-build --stream",
+    "prod-build": "lerna run prod-build --stream",
+    "wkill-node": "Taskkill /F /IM node.exe"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  }
+}

@@ -1,0 +1,6 @@
+
+
+* Install Locally
+```
+npm i -g .
+```
