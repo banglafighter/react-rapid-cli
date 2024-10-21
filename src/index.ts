@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import ProjectManager from "./commands/project-manager";
 
 const {Command} = require("commander"); // add this line
