@@ -1,19 +1,23 @@
 {
   "name": "react-rapid-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "React Rapid CLI",
   "bin": {
-    "rr-cli": "bin/index.js"
+    "rr-cli": "./bin/index.js"
   },
   "main": "bin/index.js",
   "scripts": {
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "prepublishOnly": "node prepublish.js && tsc",
+    "release": "cross-env RELEASE_MODE=true np --no-tests --any-branch"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^22.7.7",
+    "cross-env": "^7.0.3",
+    "np": "^10.0.7",
     "typescript": "^5.6.3"
   },
   "dependencies": {
